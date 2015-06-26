@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FirstFloor.ModernUI.Presentation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,10 +23,12 @@ namespace budilnik_1._00.Pages
     {
         private MediaPlayer mediaPlayer = new MediaPlayer();
         private string musicPlearUrl = "";
+        private Color color;
 
         public Play()
         {
             InitializeComponent();
+        
         }
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)
@@ -64,14 +67,26 @@ namespace budilnik_1._00.Pages
                 this.Stream.Text = musicPlearUrl;
             }
         }
+        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            mediaPlayer.Volume = VolumeSlider.Value;
+        }
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
+            BrushConverter bc = new BrushConverter();
+            Brush brushBack = (Brush)bc.ConvertFrom("#AAAAAA");
+            brushBack.Opacity = 0.1;
+
+            this.PauseButton.Background = brushBack;
+            color = AppearanceManager.Current.AccentColor;
+            SolidColorBrush brush = new SolidColorBrush(color);
             mediaPlayer.Stop();
             if (musicPlearUrl != "")
             {
                 mediaPlayer.Open(new Uri(musicPlearUrl));
                 mediaPlayer.Play();
+                this.PlayButton.Background = brush;
             }
             else
             {
@@ -82,13 +97,24 @@ namespace budilnik_1._00.Pages
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
+            BrushConverter bc = new BrushConverter();
+            Brush brush = (Brush)bc.ConvertFrom("#AAAAAA");
+            brush.Opacity = 0.1;
+            brush.Freeze();
+         
+            this.PlayButton.Background = brush;
+
+            this.PauseButton.Background = brush;
             mediaPlayer.Stop();
         }
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
         {
+            SolidColorBrush brush = new SolidColorBrush(color);
+            this.PauseButton.Background = brush;
             mediaPlayer.Pause();
         }
+      
 
 
 
