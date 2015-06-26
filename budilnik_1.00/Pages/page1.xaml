@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="budilnik_1._00.Pages.page1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="550">
+   
+    <Grid Style="{StaticResource ContentRoot}">
+     
+        <Grid.Resources>
+        <Style x:Key="ToggleButtonStyle1" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Border HorizontalAlignment="Center" Width="70" BorderThickness="1" VerticalAlignment="Center" Background="#565656" x:Name="border" Padding="5,5,5,5" CornerRadius="0" BorderBrush="#FFFFFF" SnapsToDevicePixels="True">
+                                <ContentPresenter x:Name="contentPresenter"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="true">
+                                    <Setter Property="Background" TargetName="border" Value="#9F9F9F"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="ToggleButtonStyle2" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Border HorizontalAlignment="Center" Width="150" BorderThickness="1" Background="#565656" VerticalAlignment="Center" x:Name="border" Padding="5,5,5,5" CornerRadius="0" BorderBrush="#AAAAAA" SnapsToDevicePixels="True">
+                                <ContentPresenter x:Name="contentPresenter"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="true">
+                                    <Setter Property="Background" TargetName="border" Value="#9F9F9F"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        <ScrollViewer>
+            <StackPanel MinWidth="200">
+                <TextBlock Text="SET THE ALARM" Style="{StaticResource Heading2}" />
+                <!--panels for setting alarm and button for sending-->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                    
+                    <StackPanel>
+                        <Button Name="btnHoursUp" Margin="5" Height="50" Width="80" Content="+1" Click="btnHoursUp_Click" ></Button>
+                        <TextBox Name="Hours" Focusable="False" Text="4" TextAlignment="Center"></TextBox>
+                        <Button Name="btnHoursDown" Margin="5" Height="50" Width="80" Content="-1" Click="btnHoursDown_Click"></Button>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBox Text=":" FontSize="18" Height="30" BorderThickness="0" Focusable="False"></TextBox>
+                        
+                    </StackPanel>
+                    
+                    <StackPanel>
+                        <Button Name="btnMinUp" Margin="5" Height="50" Width="80" Content="+1" MouseDown="btnMinUp_Click" Click="btnMinUp_Click"></Button>
+                        <TextBox Name="Minutes" Focusable="False" Text="20" TextAlignment="Center"></TextBox>
+                        <Button Name="btnMinDown" Margin="5" Height="50" Width="80" Content="-1" Click="btnMinDown_Click"></Button>
+                    </StackPanel>
+                    
+                    <StackPanel VerticalAlignment="Center">
+                        <Button Name="SetTheAllarm" Content="SET" Width="100" Height="100" Margin="20" Click="SetTheAllarm_Click"></Button>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBox Name="ListAlarms" Width="100" Height="70" Focusable="False" BorderThickness="0" TextWrapping="Wrap"></TextBox>
+                        <Button Name="Test" Height="60" Margin="0 10 0 0" Content="PLAY" Click="Test_Click"></Button>
+                    </StackPanel>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
+                 <!--TODO:make lines for choosing day from the week-->
+                    <ToggleButton Style="{StaticResource ToggleButtonStyle1}"  x:Name="tbMon" Content="Mon" HorizontalAlignment="Left" Margin="5 0" VerticalAlignment="Top"  Width="60" Height="40"/>
+                    <ToggleButton Style="{StaticResource ToggleButtonStyle1}"  x:Name="tbTue" Content="Tue" HorizontalAlignment="Left" Margin="5 0" VerticalAlignment="Top"  Width="60" Height="40"/>
+                    <ToggleButton Style="{StaticResource ToggleButtonStyle1}"  x:Name="tbWed" Content="Wed" HorizontalAlignment="Left" Margin="5 0"  VerticalAlignment="Top" Width="60" Height="40"/>
+                    <ToggleButton Style="{StaticResource ToggleButtonStyle1}"  x:Name="tbThu" Content="Thu" HorizontalAlignment="Left" Margin="5 0"  VerticalAlignment="Top" Width="60" Height="40"/>
+                    <ToggleButton Style="{StaticResource ToggleButtonStyle1}"  x:Name="tbFri" Content="Fri" HorizontalAlignment="Left" Margin="5 0"  VerticalAlignment="Top" Width="60" Height="40"/>
+                    <ToggleButton Style="{StaticResource ToggleButtonStyle1}"  x:Name="tbSat" Content="Sat" HorizontalAlignment="Left" Margin="5 0"  VerticalAlignment="Top" Width="60" Height="40"/>
+                    <ToggleButton Style="{StaticResource ToggleButtonStyle1}"  x:Name="tbSun" Content="Sun" HorizontalAlignment="Left" Margin="5 0" VerticalAlignment="Top"  Width="60" Height="40"/>
+
+                </StackPanel>
+                
+                <StackPanel HorizontalAlignment="Center" MinWidth="600" Margin="0 20 0 0">
+                    
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <StackPanel MinWidth="450">
+                            <TextBlock FontSize="10">Volume</TextBlock>
+                            <Slider Height="25"  Name="VolumeSlider" Value="0.75" Maximum="1" ValueChanged="VolumeSlider_ValueChanged"/>
+
+                        </StackPanel>
+
+                        <StackPanel Width="140" >
+                            <TextBlock Name="MediaName">No Media</TextBlock>
+                            <Button Name="Load" Height="30" Click="Load_Click" Content="Select Song">
+                                
+                            </Button>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    
+                </StackPanel>
+                
+                <StackPanel MinWidth="500">
+                    <TextBlock>Select Radio</TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0" HorizontalAlignment="Center">
+                        
+                        <StackPanel Margin="0 0 10 0">
+                            <RadioButton Name="zrock" GroupName="groupFoo" Style="{StaticResource ToggleButtonStyle2}" Click="RadioButton_Click">Z-ROCk</RadioButton>
+                        </StackPanel>
+                        <StackPanel Margin="0 0 10 0">
+                            <RadioButton Name="ednorock" GroupName="groupFoo" Style="{StaticResource ToggleButtonStyle2}" Click="RadioButton_Click"> 1 ROCK</RadioButton>
+                        </StackPanel>
+                        <StackPanel>
+                            <RadioButton Name="JugoMania" GroupName="groupFoo" Style="{StaticResource ToggleButtonStyle2}" Click="RadioButton_Click">ULTRA PERNIK</RadioButton>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0" HorizontalAlignment="Center">
+
+                        <StackPanel Margin="0 0 10 0">
+                            <RadioButton Name="njoy" GroupName="groupFoo" Style="{StaticResource ToggleButtonStyle2}" Click="RadioButton_Click">N-JOY</RadioButton>
+                        </StackPanel>
+                        <StackPanel Margin="0 0 10 0">
+                            <RadioButton Name="fresh" GroupName="groupFoo" Style="{StaticResource ToggleButtonStyle2}" Click="RadioButton_Click">FRESH</RadioButton>
+                        </StackPanel>
+                        <StackPanel>
+                            <RadioButton Name="energy" GroupName="groupFoo" Style="{StaticResource ToggleButtonStyle2}" Click="RadioButton_Click">ENERGY</RadioButton>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                </StackPanel>
+                <StackPanel Margin="0 20 0 0">
+                    
+                    <Button Name="stop" Content="ALARM OFF" Opacity="0" Height="30" Width="500"  Click="Stop_Click">
+                        
+                    </Button>
+                   
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
