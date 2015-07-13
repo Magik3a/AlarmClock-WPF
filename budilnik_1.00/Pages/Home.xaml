@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="budilnik_1._00.Pages.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+    <Grid Style="{StaticResource ContentRoot}">
+       
+        <ScrollViewer>
+            <StackPanel MinWidth="200" VerticalAlignment="Bottom">
+                <StackPanel HorizontalAlignment="Center">
+                    <Label Margin="0 0 0 180"  Height="148" x:Name="label1" VerticalAlignment="Center" MinWidth="300" FontSize="80" FontFamily="Forte" />
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBox Focusable="False" Name="HomeAlarm" Width="200" Height="50"  VerticalContentAlignment="Center"></TextBox>
+                </StackPanel>
+                
+
+
+                
+            </StackPanel>
+        
+        </ScrollViewer>
+        
+    </Grid>
+</UserControl>
